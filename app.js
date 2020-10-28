@@ -15,7 +15,7 @@ host: "localhost",
 port: 3306,
 user: "root",
 password: "Yuel04Banh08",
-database: "burger_list_db"
+database: "drinks_list_db"
 });
 
 connection.connect(function (err) {
@@ -28,23 +28,23 @@ connection.connect(function (err) {
 
 
 app.get("/", function (req, res) {
-    connection.query("SELECT * FROM burger;", function (err, data) {
+    connection.query("SELECT * FROM drink;", function (err, data) {
         if (err) {
             return res.status(500).end();
         }
         else {
             return res.send(views.layout({
-                title: "new burger",
-                children: views.list({ burgers: data })
+                title: "new drink",
+                children: views.list({ drinks: data })
             }
             ));
         }
     });
 });
 
-app.post("/api/burgers", function (req, res) {
-    const newburger = sanitizeHtml(req.body.plan);
-    connection.query("INSERT INTO burger (name) VALUES (?)", [newburger], function (err, result) {
+app.post("/api/drinks", function (req, res) {
+    const newDrink = sanitizeHtml(req.body.plan);
+    connection.query("INSERT INTO drink (name) VALUES (?)", [newDrink], function (err, result) {
         if (err) {
             return res.status(500).end();
         } else {
@@ -54,9 +54,9 @@ app.post("/api/burgers", function (req, res) {
 });
 
 
-app.put("/api/burgers/:id", function (req, res) {
-    const updateBurger = sanitizeHtml(req.body.plan);
-    connection.query("UPDATE burger SET name = ? WHERE id = ?", [updateBurger, req.params.id], function (err, result) {
+app.put("/api/drinks/:id", function (req, res) {
+    const updateDrink = sanitizeHtml(req.body.plan);
+    connection.query("UPDATE burger SET name = ? WHERE id = ?", [updateDrink, req.params.id], function (err, result) {
         if (err) {
             return res.status(500).end();
         }
@@ -69,8 +69,8 @@ app.put("/api/burgers/:id", function (req, res) {
 });
 
 
-app.delete("/api/burgers/:id", function (req, res) {
-    connection.query("DELETE FROM burger WHERE id = ?", [req.params.id], function (err, result) {
+app.delete("/api/drinks/:id", function (req, res) {
+    connection.query("DELETE FROM drink WHERE id = ?", [req.params.id], function (err, result) {
         if (err) {
             return res.status(500).end();
         }

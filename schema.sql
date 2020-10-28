@@ -1,13 +1,13 @@
-DROP DATABASE IF EXISTS burger_list_db;
+DROP DATABASE IF EXISTS drinks_list_db;
 
-CREATE DATABASE burger_list_db;
+CREATE DATABASE drinks_list_db;
 
-USE burger_list_db;
+USE drinks_list_db;
 
-CREATE TABLE burger (
+CREATE TABLE drink (
   id int NOT NULL AUTO_INCREMENT,
   name varchar(255) NOT NULL,
   PRIMARY KEY (id)
 );
 
-INSERT INTO burger (name) VALUES ('Quarter Pounder Cheeseburger');
+INSERT INTO drink (name) VALUES ('Sex on the Beach');
